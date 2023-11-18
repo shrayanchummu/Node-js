@@ -1,5 +1,6 @@
-function hello(name){
-    console.log("Hello "+name)
-}
+var logger = require('./logger')
+// require('./name.js') #to indicate current folder directory
+// require('./subFolder/name.js') #to indicate subFolder folder directory
+// require('../name.js') #to indicate parent folder directory
 
-hello("Chummu")
+logger.log("Hello World");
