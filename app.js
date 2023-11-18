@@ -1,6 +1,9 @@
-const log = require('./logger')
-// require('./name.js') #to indicate current folder directory
-// require('./subFolder/name.js') #to indicate subFolder folder directory
-// require('../name.js') #to indicate parent folder directory
+const EventEmitter=require('events'); // EventEmitter is a class
+const emitter = new EventEmitter(); // creating a object
 
-log("Hello World");
+// Register a Listener
+emitter.on('messageLogged', function(){
+    console.log('Listener called');
+});
+//Raise an Event
+emitter.emit('messageLogged');
