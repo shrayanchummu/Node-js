@@ -1,9 +1,15 @@
+const EventEmitter=require('events'); // EventEmitter is a class
 var url="";
-function log(message){
-    console.log(message);
-}
-// module.exports.publicInterface=privateInterface;
-// module.exports.endPoint=url;
-// module.exports.log=log;
 
-module.exports=log; // to export function only instead of object "log"
+// Wrapping func in Logger class
+class Logger extends EventEmitter{ 
+    log(message){
+        // send an HTTP request
+        console.log(message);
+        //Raise an Event
+        this.emit('messageLogged',{ id:1, url:'https://'});
+    }
+}
+
+
+module.exports=Logger; // to export Logger Class
