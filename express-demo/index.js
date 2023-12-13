@@ -17,7 +17,7 @@ app.delete('/api/names/:id',(req, res) =>{
     const name=names.find(n => n.id === parseInt(req.params.id));
     if(!name)
     {
-        res.status(404).send('given id not found');
+        return res.status(404).send('given id not found');
     }
     // if found,delete the name and return it.
     const index= names.indexOf(name);
@@ -29,7 +29,7 @@ app.put('/api/names/:id',(req, res) => {
     const name=names.find(n => n.id === parseInt(req.params.id));
     if(!name)
     {
-        res.status(404).send('given id not found');
+        return res.status(404).send('given id not found');
     }
 
     const {error} = validateNames(req.body);
@@ -112,7 +112,7 @@ app.get('/api/names/:id', (req, res)=>{
     const name=names.find(n => n.id === parseInt(req.params.id));
     if(!name)
     {
-        res.status(404).send('given id not found');
+        return res.status(404).send('given id not found');
     }
     else
     {
