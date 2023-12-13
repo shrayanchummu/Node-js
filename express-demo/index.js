@@ -1,11 +1,33 @@
 const express = require('express')
 const app = express()
+app.use(express.json());
+
 
 const names = [
     {id:1,name:'NAME1'},
     {id:2,name:'NAME2'},
     {id:3,name:'NAME3'},
 ];
+
+app.post('/api/names',(req, res)=>{
+    const name={
+        id:names.length+1,
+        name:req.body.name
+    };
+    names.push(name);
+    res.send(name);
+});
+
+
+
+
+
+
+
+
+
+
+
 app.get('/', (req, res) => {
     res.send('Hello World!, You are on Port 3000');
 });
