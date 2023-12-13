@@ -1,6 +1,8 @@
-const express = require('express')
-const app = express()
-app.use(express.json());
+const Joi= require('joi')
+const express = require('express');
+const app = express();
+
+app.use(express.json()); 
 
 
 const names = [
@@ -11,19 +13,26 @@ const names = [
 
 app.post('/api/names',(req, res)=>{
 
-    if(!res.body.name || res.body.name.length<3)
+    const schema={
+        name:Joi.string().min(3).required()
+    };
+    const result=Joi.validate(req.body,schema);
+    console.log(result);
+
+    if(result.error)
     {
         // 400 Bad Request
-        res.status(400).send('name must be at least 3 characters');
+        res.status(400).send(result.error.details[0].message);
         return;
     }
 
-    const name={
-        id:names.length+1,
+
+    const newName={
+        id:names.length+1 ,
         name:req.body.name
     };
-    names.push(name);
-    res.send(name);
+    names.push(newName);
+    res.send(names);
 });
 
 
