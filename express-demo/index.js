@@ -10,6 +10,14 @@ const names = [
 ];
 
 app.post('/api/names',(req, res)=>{
+
+    if(!res.body.name || res.body.name.length<3)
+    {
+        // 400 Bad Request
+        res.status(400).send('name must be at least 3 characters');
+        return;
+    }
+
     const name={
         id:names.length+1,
         name:req.body.name
