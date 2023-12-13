@@ -11,28 +11,35 @@ const names = [
     {id:3,name:'NAME3'},
 ];
 
-app.put('/api/names/:id',(req, res) => {
+app.delete('/api/names/:id',(req, res) =>{
     // Look up the names
-    // If not found throw 404 error
+    // if not found,return 404
     const name=names.find(n => n.id === parseInt(req.params.id));
     if(!name)
     {
         res.status(404).send('given id not found');
     }
-    // If found,Validate the request
-    // const result = validateNames(req.body);
+    // if found,delete the name and return it.
+    const index= names.indexOf(name);
+    names.splice(index,1);
+    res.send(name);
+});
 
-    // Object desstructuring the result
-    // result.error = {error}
+app.put('/api/names/:id',(req, res) => {
+    const name=names.find(n => n.id === parseInt(req.params.id));
+    if(!name)
+    {
+        res.status(404).send('given id not found');
+    }
+
     const {error} = validateNames(req.body);
-
-    // If invalid,throw an 400 Bad Request error
     if(error)
     {
-        // 400 Bad Request
         res.status(400).send(result.error.details[0].message);
         return;
     }
+
+
     // If valid, Update the names
     // Return the updated names
     name.name=req.body.name;
