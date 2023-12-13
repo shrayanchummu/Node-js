@@ -20,12 +20,14 @@ app.put('/api/names/:id',(req, res) => {
         res.status(404).send('given id not found');
     }
     // If found,Validate the request
-    const schema={
-        name:Joi.string().min(3).required()
-    };
-    const result=Joi.validate(req.body,schema);
+    // const result = validateNames(req.body);
+
+    // Object desstructuring the result
+    // result.error = {error}
+    const {error} = validateNames(req.body);
+
     // If invalid,throw an 400 Bad Request error
-    if(result.error)
+    if(error)
     {
         // 400 Bad Request
         res.status(400).send(result.error.details[0].message);
@@ -33,10 +35,19 @@ app.put('/api/names/:id',(req, res) => {
     }
     // If valid, Update the names
     // Return the updated names
-    names.name=req.body.name;
+    name.name=req.body.name;
     res.send(names);
 
 });
+
+//function to validate names
+function validateNames(name)
+{
+    const schema={
+        name:Joi.string().min(3).required()
+    };
+    return Joi.validate(name,schema);
+}
 
 
 
@@ -46,14 +57,21 @@ app.put('/api/names/:id',(req, res) => {
 
 app.post('/api/names',(req, res)=>{
 
-    const schema={
-        name:Joi.string().min(3).required()
-    };
-    const result=Joi.validate(req.body,schema);
+    // const schema={
+    //     name:Joi.string().min(3).required()
+    // };
+    // const result=Joi.validate(req.body,schema);
 
-    if(result.error)
+    // if(result.error)
+    // {
+    //     // 400 Bad Request
+    //     res.status(400).send(result.error.details[0].message);
+    //     return;
+    // }
+
+    const {error} = validateNames(req.body);
+    if(error)
     {
-        // 400 Bad Request
         res.status(400).send(result.error.details[0].message);
         return;
     }
