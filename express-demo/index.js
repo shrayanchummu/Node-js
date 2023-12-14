@@ -10,6 +10,12 @@ const app = express();
 
 app.use(express.json()); 
 
+// middleware functions
+app.use(function(req, res, next){
+    console.log('Logging (Middleware Function)');
+    next();
+});
+
 const names = [
     {id:1,name:'NAME1'},
     {id:2,name:'NAME2'},
