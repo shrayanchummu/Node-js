@@ -3,11 +3,15 @@ const logger = require('./logger');
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views','./views'); //default and optional
+
+
+
+
+//debugging package
 const startupDebug = require('debug')('app:startup');
 const dbDebug = require('debug')('app:db');
-
-
-
 
 //config managing
 const config=require('config');
@@ -58,7 +62,8 @@ const names = [
 // });
 
 app.get('/', (req, res) => {
-    res.send('Hello World!, You are on Port 3000');
+    res.render('index',{title:"My App",message:"Hello from pug"});
+    //res.send('Hello World!, You are on Port 3000');
 });
 app.get('/api/names', (req, res)=>{
     res.send(names);
