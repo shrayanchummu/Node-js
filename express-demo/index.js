@@ -3,6 +3,12 @@ const logger = require('./logger');
 const express = require('express');
 const app = express();
 
+const startupDebug = require('debug')('app:startup');
+const dbDebug = require('debug')('app:db');
+
+
+
+
 //config managing
 const config=require('config');
 console.log('App name:'+config.get('name'));
@@ -30,12 +36,12 @@ app.use(express.static('public'));
 if(app.get('env') === 'production')
 {
     app.use(helmet());
-    console.log('Testing Helmet');
+    dbDebug('Testing Helmet');
 }
 if(app.get('env') === 'development')
 {
     app.use(morgan('tiny'));
-    console.log('Testing Morgan');
+    startupDebug('Testing Morgan');
 }
 
 const names = [
