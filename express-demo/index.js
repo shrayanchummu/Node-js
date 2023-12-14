@@ -1,4 +1,5 @@
-const Joi= require('joi')
+const Joi= require('joi');
+const logger = require('./logger');
 const express = require('express');
 const app = express();
 
@@ -8,13 +9,12 @@ const app = express();
 // app.put();
 // app.delete();
 
-app.use(express.json()); 
+app.use(express.json());
 
 // middleware functions
-app.use(function(req, res, next){
-    console.log('Logging (Middleware Function)');
-    next();
-});
+app.use(logger);
+// static middleware function
+app.use(express.static('public'));
 
 const names = [
     {id:1,name:'NAME1'},
