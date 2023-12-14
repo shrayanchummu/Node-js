@@ -3,6 +3,12 @@ const logger = require('./logger');
 const express = require('express');
 const app = express();
 
+//config managing
+const config=require('config');
+console.log('App name:'+config.get('name'));
+console.log('Mail Server name:'+config.get('mail.host'));
+
+
 const helmet = require('helmet');
 const morgan = require('morgan');
 // this app object have all these methods
