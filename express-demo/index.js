@@ -3,18 +3,34 @@ const logger = require('./logger');
 const express = require('express');
 const app = express();
 
+const helmet = require('helmet');
+const morgan = require('morgan');
 // this app object have all these methods
 // app.get(); ('path',callback function)
 // app.post();
 // app.put();
 // app.delete();
 
-app.use(express.json());
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`app: ${app.get('env')}`);
 
+
+app.use(express.json());
 // middleware functions
 app.use(logger);
 // static middleware function
 app.use(express.static('public'));
+// third-party middleware function
+if(app.get('env') === 'production')
+{
+    app.use(helmet());
+    console.log('Testing Helmet');
+}
+if(app.get('env') === 'development')
+{
+    app.use(morgan('tiny'));
+    console.log('Testing Morgan');
+}
 
 const names = [
     {id:1,name:'NAME1'},
