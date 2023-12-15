@@ -1,5 +1,26 @@
 console.log('Before');
-setTimeout(()=>{
-    console.log('this statement executes in future');;
-},2000);
+// getUser(id, function)
+getUser(1, function(result){
+    console.log(result);
+    username=result.username;
+    getRepositories(username, function(repo){
+        console.log(repo);
+    });
+});
 console.log('After');
+
+function getUser(id,callback)
+{
+    setTimeout(()=>{
+        console.log('getting username'); // executes in future after 2000ms
+        // callback is called when the result of the asynchronous operation is ready
+        callback({id: id,username:'Chummu'});
+    },2000);
+}
+function getRepositories(username,callback)
+{
+    setTimeout(()=>{
+        console.log('getting repositories of '+username +' by gitbuh API'); // executes in future after 2000ms
+        callback(['repo1','repo2','repo3']);
+    },2000);
+}
