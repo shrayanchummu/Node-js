@@ -25,18 +25,18 @@ function getRepositories(username,callback)
     },2000);
 }
 
-//Asynchronous
-console.log('Before');
-getUser(1,displayResult);
-console.log('After');
+// //Asynchronous
+// console.log('Before');
+// getUser(1,displayResult);
+// console.log('After');
 
-//solving CALLBACK HELL
-function displayParameter(Parameter){
-    console.log(Parameter);
-}
-function displayRepository(repo){
-    anotherFunction(repo,displayParameter);
-}
-function displayResult(result){
-    getRepositories(result.username,displayRepository);
-}
+// //solving CALLBACK HELL
+// function displayParameter(Parameter){
+//     console.log(Parameter);
+// }
+// function displayRepository(repo){
+//     anotherFunction(repo,displayParameter);
+// }
+// function displayResult(result){
+//     getRepositories(result.username,displayRepository);
+// }
