@@ -1,13 +1,13 @@
-console.log('Before');
-// getUser(id, function)
-getUser(1, function(result){
-    console.log(result);
-    username=result.username;
-    getRepositories(username, function(repo){
-        console.log(repo);
-    });
-});
-console.log('After');
+// console.log('Before');
+// // getUser(id, function)
+// getUser(1, function(result){
+//     console.log(result);
+//     username=result.username;
+//     getRepositories(username, function(repo){
+//         console.log(repo);
+//     });
+// });
+// console.log('After');
 
 function getUser(id,callback)
 {
@@ -40,3 +40,40 @@ function getRepositories(username,callback)
 // function displayResult(result){
 //     getRepositories(result.username,displayRepository);
 // }
+
+
+// //Synchronous
+// console.log('Before');
+// const result=getUser(id);
+// const repo=getRepositories(result);
+// const anotherParameter=anotherFunction(repo);
+// console.log(anotherParameter);
+// console.log('After');
+
+// //await operations
+// console.log('Before');
+// const result=await getUser(id);
+// const repo=await getRepositories(result.username);
+// const anotherParameter=await anotherFunction(repo);
+// console.log(anotherParameter);
+// console.log('After');
+
+// async and await approach
+// const util = require('util');
+// const getUserAsync = util.promisify(getUser);
+// const getRepositoriesAsync = util.promisify(getRepositories);
+
+async function display(){
+    try {
+        const result = await getUser(1);
+         console.log(result);
+
+        const repo = await getRepositories(result.username);
+         console.log(repo);
+    } catch (error) {
+        console.log('An error occurred:', error.message);
+    }
+    // const anotherParameter=await anotherFunction(repo);
+    // console.log(anotherParameter);
+}
+display();
