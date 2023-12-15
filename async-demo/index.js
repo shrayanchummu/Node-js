@@ -24,3 +24,21 @@ function getRepositories(username,callback)
         callback(['repo1','repo2','repo3']);
     },2000);
 }
+
+// //Asynchronous
+// console.log('Before');
+// getUser(1,(result)=>{
+//     getRepositories(result.username,(repo)=>{
+//         anotherFunction(repo,(anotherParameter)=>{
+//             console.log(anotherParameter);
+//         });
+//     });
+// });
+// console.log('After');
+// //Synchronous
+// console.log('Before');
+// const result=getUser(id);
+// const repo=getRepositories(result);
+// const anotherParameter=anotherFunction(repo);
+// console.log(anotherParameter);
+// console.log('After');
