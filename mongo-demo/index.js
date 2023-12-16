@@ -36,28 +36,47 @@ async function createModel(){
 // }
 // getModel();
 
+// const User = mongoose.model('User', userSchema);
+// async function getModel(){
+//             // const pageNumber =3;
+//             // const pageSize =10;
+//     const result= await User
+//         .find({name:'Shrayan'})
+//         // .find({price: {$gt: 10, $lt: 20}}) // greater than 10 & less than 20
+//         // .find({price: {$in:[10,20,30]}}) // if price = 10 or 20 or 30
+//         // .find({price: {$ne:10}}) // if price not equal to 10
+//         // .find()
+//         // .or([{name:'Shrayan'},{isPublished:true}]) // gets Shrayan or true values
+//         // .and([{name:'Shrayan'},{isPublished:false}])// gets only if 
+//         // // Starts with 'Abc' (case senstive)
+//         // .find({name: /^Abc/ })
+//         // // Ends with 'Abc' (case insenstive)
+//         // .find({name: /Abc$/i })
+//         // // Contains 'Abc' (case insenstive)
+//         // .find({name: /.*Abc.*/i })
+//         // .count() // Counts the no. of documents in the collection
+//         .limit(10)
+//         .sort({name :1}) // 1/-1 => Ascending/Descending
+//         .select({ name:1,tags:1}) // shows only name,tag info
+//     console.log(result);
+// }
+// //getModel();
+
 const User = mongoose.model('User', userSchema);
-async function getModel(){
-            // const pageNumber =3;
-            // const pageSize =10;
-    const result= await User
-        .find({name:'Shrayan'})
-        // .find({price: {$gt: 10, $lt: 20}}) // greater than 10 & less than 20
-        // .find({price: {$in:[10,20,30]}}) // if price = 10 or 20 or 30
-        // .find({price: {$ne:10}}) // if price not equal to 10
-        // .find()
-        // .or([{name:'Shrayan'},{isPublished:true}]) // gets Shrayan or true values
-        // .and([{name:'Shrayan'},{isPublished:false}])// gets only if 
-        // // Starts with 'Abc' (case senstive)
-        // .find({name: /^Abc/ })
-        // // Ends with 'Abc' (case insenstive)
-        // .find({name: /Abc$/i })
-        // // Contains 'Abc' (case insenstive)
-        // .find({name: /.*Abc.*/i })
-        // .count() // Counts the no. of documents in the collection
-        .limit(10)
-        .sort({name :1}) // 1/-1 => Ascending/Descending
-        .select({ name:1,tags:1}) // shows only name,tag info
+async function updateUser(id){
+    const userResult = await User.findById(id);
+    if(!userResult){
+        return;
+    }
+    userResult.set({
+        name:'new name',
+        tags:['tag1', 'tag2'],
+        isPublished:true
+    })
+    const result = await userResult.save();
     console.log(result);
+
 }
-getModel();
+updateUser('657de5487df95880d24530fb');
+
+
