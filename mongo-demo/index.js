@@ -19,8 +19,8 @@ const userSchema = new mongoose.Schema({
 async function createModel(){
     const User = mongoose.model('User', userSchema);
     const user = new User({
-    name:'Shrayan',
-    tags:['JavaScript','Node.js'],
+    name:'Chummu',
+    tags:['C++','System Design'],
     isPublished:true
     });
     const result = await user.save();
