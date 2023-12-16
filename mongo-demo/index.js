@@ -5,3 +5,12 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1/playground')
     .then(()=>{console.log('Connected to MongoDB');})
     .catch(err=>{console.error('Error connecting to MongoDB ',err.message);});
+
+// create a schema
+
+const userSchema = new mongoose.Schema({
+    name: String,
+    tags:[String],
+    date:{ type: Date, default: Date.now },
+    isPublished: Boolean
+});
