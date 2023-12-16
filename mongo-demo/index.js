@@ -40,6 +40,9 @@ const User = mongoose.model('User', userSchema);
 async function getModel(){
     const result= await User
         .find({name:'Shrayan'})
+        // .find({price: {$gt: 10, $lt: 20}}) // greater than 10 & less than 20
+        // .find({price: {$in:[10,20,30]}}) // if price = 10 or 20 or 30
+        // .find({price: {$ne:10}}) // if price not equal to 10
         .limit(10)
         .sort({name :1}) // 1/-1 => Ascending/Descending
         .select({ name:1,tags:1}) // shows only name,tag info
