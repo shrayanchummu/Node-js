@@ -29,9 +29,20 @@ async function createModel(){
 //createModel();
 
 // Querying Documents
+// const User = mongoose.model('User', userSchema);
+// async function getModel(){
+//     const result= await User.find();
+//     console.log(result);
+// }
+// getModel();
+
 const User = mongoose.model('User', userSchema);
 async function getModel(){
-    const result= await User.find();
+    const result= await User
+        .find({name:'Shrayan'})
+        .limit(10)
+        .sort({name :1}) // 1/-1 => Ascending/Descending
+        .select({ name:1,tags:1}) // shows only name,tag info
     console.log(result);
 }
 getModel();
