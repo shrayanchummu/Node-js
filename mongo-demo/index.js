@@ -62,17 +62,24 @@ async function createModel(){
 // }
 // //getModel();
 
+// const User = mongoose.model('User', userSchema);
+// async function updateUser(id){
+//     const userResult = await User.updateOne({_id : id},{
+//         $set:{
+//             name:'again new name',
+//             tags:['new tag1', 'new tag2'],
+//             isPublished:true
+//         }
+//     });
+//     console.log(userResult);
+// }
+// updateUser('657de5487df95880d24530fb');
+
 const User = mongoose.model('User', userSchema);
-async function updateUser(id){
-    const userResult = await User.updateOne({_id : id},{
-        $set:{
-            name:'again new name',
-            tags:['new tag1', 'new tag2'],
-            isPublished:true
-        }
-    });
+async function deleteUser(id){
+    const userResult = await User.deleteOne({_id : id});
     console.log(userResult);
 }
-updateUser('657de5487df95880d24530fb');
+deleteUser('657de5487df95880d24530fb');
 
 
