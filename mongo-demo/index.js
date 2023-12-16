@@ -38,6 +38,8 @@ async function createModel(){
 
 const User = mongoose.model('User', userSchema);
 async function getModel(){
+            // const pageNumber =3;
+            // const pageSize =10;
     const result= await User
         .find({name:'Shrayan'})
         // .find({price: {$gt: 10, $lt: 20}}) // greater than 10 & less than 20
@@ -53,9 +55,7 @@ async function getModel(){
         // // Contains 'Abc' (case insenstive)
         // .find({name: /.*Abc.*/i })
         // .count() // Counts the no. of documents in the collection
-            const pageNumber =3;
-            const pageSize =10;
-        .limit(pageSize)
+        .limit(10)
         .sort({name :1}) // 1/-1 => Ascending/Descending
         .select({ name:1,tags:1}) // shows only name,tag info
     console.log(result);
