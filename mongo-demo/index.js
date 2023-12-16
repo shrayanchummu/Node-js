@@ -26,4 +26,12 @@ async function createModel(){
     const result = await user.save();
     console.log(result);
 }
-createModel();
+//createModel();
+
+// Querying Documents
+const User = mongoose.model('User', userSchema);
+async function getModel(){
+    const result= await User.find();
+    console.log(result);
+}
+getModel();
