@@ -52,8 +52,10 @@ async function getModel(){
         // .find({name: /Abc$/i })
         // // Contains 'Abc' (case insenstive)
         // .find({name: /.*Abc.*/i })
-        .count() // Counts the no. of documents in the collection
-        .limit(10)
+        // .count() // Counts the no. of documents in the collection
+            const pageNumber =3;
+            const pageSize =10;
+        .limit(pageSize)
         .sort({name :1}) // 1/-1 => Ascending/Descending
         .select({ name:1,tags:1}) // shows only name,tag info
     console.log(result);
