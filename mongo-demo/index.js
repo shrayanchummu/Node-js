@@ -64,18 +64,14 @@ async function createModel(){
 
 const User = mongoose.model('User', userSchema);
 async function updateUser(id){
-    const userResult = await User.findById(id);
-    if(!userResult){
-        return;
-    }
-    userResult.set({
-        name:'new name',
-        tags:['tag1', 'tag2'],
-        isPublished:true
-    })
-    const result = await userResult.save();
-    console.log(result);
-
+    const userResult = await User.updateOne({_id : id},{
+        $set:{
+            name:'again new name',
+            tags:['new tag1', 'new tag2'],
+            isPublished:true
+        }
+    });
+    console.log(userResult);
 }
 updateUser('657de5487df95880d24530fb');
 
