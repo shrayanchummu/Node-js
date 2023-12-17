@@ -26,8 +26,13 @@ const userSchema = new mongoose.Schema({
     tags:{
         type:Array,
         validate:{
-            validator: function(value){
-                return (value) && value.length > 0;
+            isAsync:true,
+            validator: function(value,callback){
+                setTimeout(()=>{
+                    // Do some Async work
+                    const answer =  (value) && (value.length > 0);
+                    callback(answer);
+                },1000);
             },
             message: 'Should have at least one tag'
         }
