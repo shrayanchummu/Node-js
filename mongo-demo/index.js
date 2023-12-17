@@ -8,10 +8,43 @@ mongoose.connect('mongodb://127.0.0.1/playground')
 
 // create a schema
 const userSchema = new mongoose.Schema({
-    name: String,
-    tags:[String],
+    name: {
+        type: String,
+        required: true,
+        minLength:5,
+        maxLength:50,
+        //match: /pattern/
+    },
+    category:{
+        type:String,
+        required: true,
+        enum:['option 1','option 2'],
+        lowercase:true,
+        // uppercase:true,
+        trim:true // removes padding in string
+    },
+    tags:{
+        type:Array,
+        validate:{
+            validator: function(value){
+                return (value) && value.length > 0;
+            },
+            message: 'Should have at least one tag'
+        }
+    },
     date:{ type: Date, default: Date.now },
-    isPublished: Boolean
+    isPublished: Boolean,
+    price:{
+        type: Number,
+        required: function(){
+             return this.isPublished;
+            //requires if isPublishes is true
+        },
+        min:10,
+        max:5000,
+        set: value=>Math.round(value),
+        get: value=>Math.round(value)
+    }
 });
 
 // Classes, Objects in OOPS
@@ -20,11 +53,19 @@ async function createModel(){
     const User = mongoose.model('User', userSchema);
     const user = new User({
     name:'Chummu',
+    category:'Developer',
     tags:['C++','System Design'],
-    isPublished:true
+    isPublished:true,
+    price:1000.5
     });
-    const result = await user.save();
-    console.log(result);
+
+    try{
+        const result = await user.save();
+        console.log(result);
+    }
+    catch(err){
+        console.log(err.message);
+    }
 }
 //createModel();
 
