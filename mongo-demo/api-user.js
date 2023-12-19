@@ -1,6 +1,7 @@
 const Joi= require('joi');
 const express = require('express');
 const router = express.Router();
+const bcrypt=require('bcrypt');
 
 // Mongoose
 const mongoose= require('mongoose');
@@ -62,6 +63,12 @@ router.post('/',async(req, res)=>{
         email:req.body.email,
         password:req.body.password
     });
+
+    const salt=await bcrypt.genSalt(10);
+    // console.log(salt);
+    user.password=await bcrypt.hash(user.password,salt);
+    // console.log(user.password);
+
     await user.save();
     res.send({
         name:user.name,
