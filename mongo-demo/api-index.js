@@ -2,6 +2,7 @@
 const express = require('express');
 const api_names=require('./api-names');
 const api_user=require('./api-user');
+const api_auth=require('./api-auth');
 const app = express();
 
 // Mongoose
@@ -17,6 +18,7 @@ mongoose.connect('mongodb://127.0.0.1/api-demo')
 app.use(express.json());
 app.use('/api/names',api_names);
 app.use('/api/user',api_user);
+app.use('/api/login',api_auth);
 
 //port allocation
 const port = process.env.PORT || 3000
