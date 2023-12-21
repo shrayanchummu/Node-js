@@ -1,12 +1,13 @@
 // order of the elements [require,set,use]
 const express = require('express');
 const api_names=require('./api-names');
-const api_user=require('./api-user');
+const api_users=require('./api-users');
 const api_auth=require('./api-auth');
 const app = express();
-
+// console.log('Importing done');
 // Mongoose
 const mongoose= require('mongoose');
+// console.log('Importing mongoose');
 mongoose.connect('mongodb://127.0.0.1/api-demo')
   .then(()=>{
         console.log('connected to mongodb');
@@ -17,8 +18,9 @@ mongoose.connect('mongodb://127.0.0.1/api-demo')
 
 app.use(express.json());
 app.use('/api/names',api_names);
-app.use('/api/user',api_user);
+app.use('/api/users',api_users);
 app.use('/api/login',api_auth);
+// console.log('Using apps');
 
 //port allocation
 const port = process.env.PORT || 3000
