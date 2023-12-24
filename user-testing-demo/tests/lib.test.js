@@ -68,3 +68,19 @@ describe('registerUser',()=>{
         expect(result).toMatchObject({username:'Chummu'});   
     });
 });
+
+describe('mockFunction',()=>{
+    it('should return ___ ',()=>{
+        const mockFunction=jest.fn();
+        mockFunction.mockReturnValue(1); // to return value
+        // mockFunction.mockReturnValue({}); // to return object
+        // mockFunction.mockResolvedValue(1); // to return promises
+        // mockFunction.mockRejectValue(new Error('...')); // to throw rejection
+
+        const result=mockFunction();
+        // const result=await mockFunction();
+        // object.method=jest.fn();
+        expect(result).toBe(1);
+        // expect(object.method).toHaveBeenCalled();
+    })
+})
