@@ -14,3 +14,10 @@ describe('absolute',()=>{
         expect(result).toBe(0);
     });
 });
+
+describe('greet',()=>{
+    it('should return greeting message',()=>{
+        const result=lib.greet('Chummu');
+        expect(result).toBe('Welcome Chummu');
+    });
+});
