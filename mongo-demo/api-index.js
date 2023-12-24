@@ -1,14 +1,14 @@
 // order of the elements [require,set,use]
-const express = require('express');
 const api_names=require('./api-names');
 const api_users=require('./api-users');
 const api_auth=require('./api-auth');
+const express = require('express');
 const app = express();
 // console.log('Importing done');
 // Mongoose
 const mongoose= require('mongoose');
 // console.log('Importing mongoose');
-mongoose.connect('mongodb://127.0.0.1/api-demo')
+mongoose.connect('mongodb://127.0.0.1/api')
   .then(()=>{
         console.log('connected to mongodb');
     })
