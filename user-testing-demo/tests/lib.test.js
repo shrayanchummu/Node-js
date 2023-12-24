@@ -18,6 +18,26 @@ describe('absolute',()=>{
 describe('greet',()=>{
     it('should return greeting message',()=>{
         const result=lib.greet('Chummu');
-        expect(result).toBe('Welcome Chummu');
+        // too specific
+        // expect(result).toBe('Welcome Chummu');
+        expect(result).toMatch(/Chummu/);
+        expect(result).toContain('Chummu');
+    });
+});
+
+describe('getCurrencies',()=>{
+    it('should return currencices',()=>{
+        const result=lib.getCurrencies();
+        // too general
+        expect(result).toBeDefined();
+        expect(result).not.toBeNull();
+        // too specific
+        expect(result[0]).toBe('USD');
+        expect(result[1]).toBe('AUD');
+        expect(result[2]).toBe('EUR');
+        // proper way
+        expect(result).toContain('USD');
+        expect(result).toContain('AUD');
+        expect(result).toContain('EUR');
     });
 });
