@@ -48,5 +48,19 @@ describe('getProducts',()=>{
         //expect(result).toBe({id:1,price:10});
         //fails test because toBe returns reference...so we should use toEqua;
         expect(result).toEqual({id:1,price:10});
+        expect(result).toMatchObject({id:1,price:10});
+        // expect(result).toHaveObject('id',1);
+    });
+});
+
+describe('registerUser',()=>{
+    it('should throw if username is falsy',()=>{
+        // Null
+        // undefined
+        // NaN
+        // ''
+        // 0
+        // false
+        expect(()=>{ lib.registerUser(null) }).toThrow();   
     });
 });
