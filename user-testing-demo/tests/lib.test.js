@@ -41,3 +41,12 @@ describe('getCurrencies',()=>{
         expect(result).toContain('EUR');
     });
 });
+
+describe('getProducts',()=>{
+    it('should return product with given id',()=>{
+        const result=lib.getProduct(1);
+        //expect(result).toBe({id:1,price:10});
+        //fails test because toBe returns reference...so we should use toEqua;
+        expect(result).toEqual({id:1,price:10});
+    });
+});
