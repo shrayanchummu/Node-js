@@ -63,4 +63,8 @@ describe('registerUser',()=>{
         // false
         expect(()=>{ lib.registerUser(null) }).toThrow();   
     });
+    it('should return a valid object if name is passed',()=>{
+        const result = lib.registerUser('Chummu')
+        expect(result).toMatchObject({username:'Chummu'});   
+    });
 });
