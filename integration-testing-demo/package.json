@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "supertest": "^6.3.3"
+  },
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
